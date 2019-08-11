@@ -24,7 +24,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "io.glitr"
+    },
+    "android": {
+      "package": "io.glitr"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/glitr-io/glitr-app"
   }
 }

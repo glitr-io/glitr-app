@@ -1,7 +1,14 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "docker:expo": "./scripts/expo-start.sh",
+    "docker:build": "sudo docker build --no-cache -t expo .",
+    "docker:start": "sudo docker run -v=$PWD:/app -e REACT_NATIVE_PACKAGER_HOSTNAME=192.168.1.116 -p 19000:19000 -p 19001:19001 -p 19002:19002 -it expo expo start",
     "start": "expo start",
+    "build:android": "expo build:android",
+    "build:android:production": "expo build:android --release-channel production",
+    "publish:android:production": "expo publish --release-channel production",
+    "build:ios": "expo build:ios",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

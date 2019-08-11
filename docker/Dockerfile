@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /app
+
+RUN npm install -g expo-cli
+
+EXPOSE 19000
+EXPOSE 19001
+EXPOSE 19002
+
+ENTRYPOINT [ "" ]
