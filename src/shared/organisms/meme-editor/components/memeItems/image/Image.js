@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-import {ImagePicker} from 'expo';
+import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import Draggable from '../../draggable/Draggable';
 import Selectable from '../../selectable/Selectable';

@@ -12,7 +12,7 @@ import {
     Tabs,
     Tab
 } from 'native-base';
-import { ImagePicker } from 'expo';
+import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 import InputControl from '../../../input-controls/InputControl';
 
