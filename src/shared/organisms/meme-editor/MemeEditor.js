@@ -1,5 +1,6 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import React, { useRef} from 'react';
+import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Grid, Col, Row } from "react-native-easy-grid";
 import MemeEditorStyle from './MemeEditorStyle';
 import MemeItem from './components/memeItems';
@@ -7,8 +8,10 @@ import MemeItem from './components/memeItems';
 export default ({
     updateMemeItems,
     memeItems,
-    addMemeItem
+    addMemeItem,
+    onSave
 }) => {
+    const canvasRef = useRef(null);
     const canvas = memeItems.find(({ type }) => type === 'CANVAS');
     
     return (
@@ -37,41 +40,59 @@ export default ({
                         </TouchableOpacity>
                     </Col>
                     <Col>
-                        <Text style={{ backgroundColor: 'red', height: 40 }}>{'save'}</Text>
+                        <TouchableOpacity
+                            onPress={() => takeSnapshotAsync(canvasRef, {
+                                    result: 'base64',
+                                    quality: 1,
+                                    format: 'jpg',
+                                }).then((response) => {
+                                    onSave({
+                                        memeItems,
+                                        base64: `data:image/jpeg;base64,${response}`
+                                    })
+                                }).catch(console.log)
+                            }
+                        >
+                            <Text style={{ backgroundColor: 'red', height: 40 }}>{'save'}</Text>
+                        </TouchableOpacity>
                     </Col>
                 </Row>
             </Grid>
-            <MemeItem
-                key={0}
-                type={canvas.type}
-                value={canvas.value}
-                style={canvas.style}
-                onChange={update => updateMemeItems(
-                    memeItems.map((item) => item.type === 'CANVAS'
-                        ? { ...item, ...update }
-                        : item
-                    )
-                )}
+            <View
+                ref={canvasRef}
+                collapsable={false}
             >
-                {memeItems
-                    // .filter(({ type }) => type !== 'CANVAS')
-                    .map(({ type, value, style }, index) => type !== 'CANVAS' ? (
-                        <MemeItem
-                            key={index}
-                            type={type}
-                            value={value}
-                            style={style}
-                            onChange={update => updateMemeItems(
-                                memeItems.map((item, itemIndex) => itemIndex === index
-                                    ? { ...item, ...update }
-                                    : item
-                                )
-                            )}
-                        />
-                    )
-                    : (<Text key="fail">fail</Text>))
-                }
-            </MemeItem>
+                <MemeItem
+                    key={0}
+                    type={canvas.type}
+                    value={canvas.value}
+                    style={canvas.style}
+                    onChange={update => updateMemeItems(
+                        memeItems.map((item) => item.type === 'CANVAS'
+                            ? { ...item, ...update }
+                            : item
+                        )
+                    )}
+                >
+                    {memeItems
+                        // .filter(({ type }) => type !== 'CANVAS')
+                        .map(({ type, value, style }, index) => type !== 'CANVAS' && (
+                            <MemeItem
+                                key={index}
+                                type={type}
+                                value={value}
+                                style={style}
+                                onChange={update => updateMemeItems(
+                                    memeItems.map((item, itemIndex) => itemIndex === index
+                                        ? { ...item, ...update }
+                                        : item
+                                    )
+                                )}
+                            />
+                        ))
+                    }
+                </MemeItem>
+            </View>
         </MemeEditorStyle>
     );
 }

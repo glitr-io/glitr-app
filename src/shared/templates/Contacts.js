@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar, View, Alert, ListView, FlatList } from 'react-native';
 import { Container, Content, Header, Left, Body, Right, Title, Button, Icon } from 'native-base';
+import * as Permissions from 'expo-permissions'
 import ContactListItem from '../organisms/ContactListItem';
 import AddButton from '../atoms/AddButton';
 import CancelButton from '../atoms/CancelButton';
@@ -46,7 +47,7 @@ class Contacts extends Component {
 
     showFirstContactAsync () {
         // Ask for permission to query contacts.
-        Expo.Permissions.askAsync(Expo.Permissions.CONTACTS)
+        Permissions.askAsync(Permissions.CONTACTS)
             .then(permission => {
                 if (permission.status !== 'granted') {
                     // Permission was denied...

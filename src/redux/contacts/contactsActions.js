@@ -1,5 +1,6 @@
 // import store from '../store';
-import { Contacts, Permissions, Alert } from 'expo';
+import { Contacts, Alert } from 'expo';
+import * as Permissions from 'expo-permissions'
 
 export const CONTACTS_GET_ALL_CONTACTS = 'CONTACTS_GET_ALL_CONTACTS';
 export const CONTACTS_ADD_NEW_CONTACTS = 'CONTACTS_ADD_NEW_CONTACTS';

@@ -8,7 +8,8 @@ import {
     Tabs,
     Tab
 } from 'native-base';
-import { Permissions, ImagePicker } from 'expo';
+import { ImagePicker } from 'expo';
+import * as Permissions from 'expo-permissions'
 import Carousel from 'react-native-snap-carousel';
 import SquaredCircle from '../../../../atoms/SquaredCircle';
 import InputControl from '../../../input-controls/InputControl';

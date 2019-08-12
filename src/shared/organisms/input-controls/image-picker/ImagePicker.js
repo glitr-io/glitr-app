@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, CameraRoll, Dimensions, Image, Text, TouchableOpacity, Alert } from 'react-native';
 import { Button, Icon } from 'native-base';
-import { Permissions, ImagePicker as ImgPicker } from 'expo';
+import { ImagePicker as ImgPicker } from 'expo';
+import * as Permissions from 'expo-permissions'
 import Carousel from 'react-native-snap-carousel';
 import { withNavigation } from 'react-navigation';
 import { Col, Row, Grid } from "react-native-easy-grid";

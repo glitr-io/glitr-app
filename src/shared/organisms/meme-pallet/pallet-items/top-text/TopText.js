@@ -12,7 +12,8 @@ import {
     Tabs,
     Tab
 } from 'native-base';
-import { Permissions, ImagePicker } from 'expo';
+import { ImagePicker } from 'expo';
+import * as Permissions from 'expo-permissions'
 import InputControl from '../../../input-controls/InputControl';
 
 const TopText = ({
