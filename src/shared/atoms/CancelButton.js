@@ -4,7 +4,7 @@ import { Button, Text } from 'native-base';
 import CancelIcon from '../images/close_big.png';
 import { withNavigation } from 'react-navigation';
 
-const CancelButton = ({ navigation, onPress }) => (
+const CancelButton = ({ navigation, onPress, style }) => (
     <TouchableOpacity
         style={{
             margin: 10,
@@ -12,11 +12,12 @@ const CancelButton = ({ navigation, onPress }) => (
             width: 70,
             alignContent: 'center',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            ...style
         }}
         onPress={onPress}
     >
-        <Image source={CancelIcon} style={{ height: 70, width: 70 }} />
+        <Image source={CancelIcon} style={{ height: '100%', width: '100%' }} />
     </TouchableOpacity>
 );
 

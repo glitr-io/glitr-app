@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import { saveMeme, removeMeme } from '../redux/library/libraryActions';
 
 const mapStateToProps = ({
-    memes
+    library: {
+        memes
+    }
 }) => ({
     memes
 });

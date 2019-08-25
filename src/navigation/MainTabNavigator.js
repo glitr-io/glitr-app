@@ -58,7 +58,7 @@ export default createBottomTabNavigator({
   MemeEditor,
   Library
 }, {
-  initialRouteName: 'MemeEditor',
+  initialRouteName: 'Library',
   tabBarOptions: {
       showLabel: false
   }
