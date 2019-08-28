@@ -54,10 +54,9 @@ export default (state = initialState, action) => {
                 ...state,
                 memes: !!state.memes
                     .find(meme => meme.id === action.result.id)
-                        ? meme.map(meme =>
-                            meme => meme.id === action.result.id
-                                ? action.result
-                                : meme
+                        ? state.memes.map(meme => meme.id === action.result.id
+                            ? action.result
+                            : meme
                         )
                         : [...state.memes, action.result]
             };
@@ -65,7 +64,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 memes: state.memes
-                    .filter(meme => meme.id === action.result)
+                    .filter(meme => meme.id !== action.result)
             };
         default:
             return state;

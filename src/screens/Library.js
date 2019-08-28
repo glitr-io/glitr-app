@@ -1,7 +1,8 @@
 import Library from '../shared/templates/Library';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { saveMeme, removeMeme } from '../redux/library/libraryActions';
+import { removeMeme } from '../redux/library/libraryActions';
+import { loadCanvas } from '../redux/meme-editor/memeEditorActions';
 
 const mapStateToProps = ({
     library: {
@@ -12,7 +13,7 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    saveMeme,
+    loadCanvas,
     removeMeme
 }, dispatch);
 

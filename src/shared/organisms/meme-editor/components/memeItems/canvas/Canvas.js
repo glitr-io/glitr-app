@@ -10,7 +10,7 @@ class Canvas extends Component {
         const { value, style, onChange, children } = this.props;
 
         return (
-            <View style={{ height: style.height + 100, width: '100%', position: 'relative', alignItems: 'center' }}>
+            <View style={{ height: style.height, width: '100%', position: 'relative', alignItems: 'center' }}>
                 <View
                     style={{
                         position: 'absolute',
@@ -22,19 +22,6 @@ class Canvas extends Component {
                 >
                     {children}
                 </View>
-        
-                <Draggable
-                    draggable={{
-                        x: false,
-                        y: true
-                    }}
-                    style={{ height: 50, width: 50, backgroundColor: 'lightblue', top: style.height }}
-                    onStyle={style => {
-                        onChange({ style: { height: style.top }});
-                    }}
-                >
-                    <Text>up and down</Text>
-                </Draggable>
             </View>
         );
     }

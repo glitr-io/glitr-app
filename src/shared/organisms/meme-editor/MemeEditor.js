@@ -1,18 +1,32 @@
-import React, { useRef} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Grid, Col, Row } from "react-native-easy-grid";
+import { debounce } from 'underscore'
 import MemeEditorStyle from './MemeEditorStyle';
 import MemeItem from './components/memeItems';
+import Draggable from './components/draggable/Draggable';
+import Input from '../../organisms/input-controls/InputControl';
+
 
 export default ({
-    updateMemeItems,
+    id,
+    metadata,
     memeItems,
+    updateMemeItems: propsUpdateMemeItems,
     addMemeItem,
+    resetCanvas,
+    updateMetadata,
     onSave
 }) => {
+    // const [memeItems, setMemeItems] = useState(propsMemeItems);
     const canvasRef = useRef(null);
     const canvas = memeItems.find(({ type }) => type === 'CANVAS');
+    const updateMemeItems = debounce(propsUpdateMemeItems, 1000, { maxWait: 1000 });
+
+    // useEffect(() => {
+    //     setMemeItems(propsMemeItems)
+    // }, [propsMemeItems]);
     
     return (
         <MemeEditorStyle>
@@ -47,8 +61,12 @@ export default ({
                                     format: 'jpg',
                                 }).then((response) => {
                                     onSave({
+                                        id,
+                                        metadata: {
+                                            ...metadata,
+                                            thumbnail: `data:image/jpeg;base64,${response}`
+                                        },
                                         memeItems,
-                                        base64: `data:image/jpeg;base64,${response}`
                                     })
                                 }).catch(console.log)
                             }
@@ -59,8 +77,10 @@ export default ({
                 </Row>
             </Grid>
             <View
+                key={`canvas-${id}`}
                 ref={canvasRef}
                 collapsable={false}
+                style={{ paddingBottom: 0, marginBottom: 0 }}
             >
                 <MemeItem
                     key={0}
@@ -93,6 +113,52 @@ export default ({
                     }
                 </MemeItem>
             </View>
+
+        
+            <Draggable
+                    key={id}
+                    draggable={{
+                        x: false,
+                        y: true
+                    }}
+                    style={{
+                        height: 40,
+                        width: '100%',
+                        backgroundColor: 'lightblue',
+                        top: memeItems
+                            .find((item) => item.type === 'CANVAS')
+                            .style.height + 40,
+                        position: 'absolute',
+                    }}
+                    onStyle={update => updateMemeItems(
+                        memeItems.map(item => item.type === 'CANVAS'
+                            ? {
+                                ...item,
+                                style: {
+                                    ...item.style,
+                                    height: update.top - 40
+                                }
+
+                            }
+                            : item
+                        )
+                    )}
+                >
+                    <Text>up and down</Text>
+                </Draggable>
+                <Grid style={{ marginTop: 40 }}>
+                    <Row>
+                        <Col>
+                            <Input
+                                type="text"
+                                value={metadata.name}
+                                onChange={newName => updateMetadata({
+                                    name: newName
+                                })}
+                            />
+                        </Col>
+                    </Row>
+                </Grid>
         </MemeEditorStyle>
     );
 }

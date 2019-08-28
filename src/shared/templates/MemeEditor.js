@@ -30,7 +30,10 @@ class MemeEditor extends PureComponent {
     };
 
     render() {
-        const { navigation } = this.props;
+        const {
+            navigation,
+            saveMeme
+        } = this.props;
         const isSending = !!navigation.getParam('onMemeSelect');
 
         return (
@@ -57,7 +60,7 @@ class MemeEditor extends PureComponent {
                                     <MemeEditorComponent
                                         // memeItems={memeItems}
                                         // defaultMemeItems={memeItems}
-                                        onSave={({ memeItems, base64 }) => console.log('onsave:', { memeItems, base64 })}
+                                        onSave={(memeData) => saveMeme(memeData)}
                                         onChange={newmemeItems => console.log('onChange:', newmemeItems)}
                                     />
 

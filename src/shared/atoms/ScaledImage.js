@@ -59,6 +59,8 @@ class ScaledImage extends Component {
         return (
             <Image
                 onLayout={({ nativeEvent: {layout: {width}}}) => !this.state.layoutWidth && this.setState({ layoutWidth: width })}
+                resizeMethod="resize"
+                resizeMode="contain"
                 {...this.props}
                 style={{ height, width, ...style }}
             />

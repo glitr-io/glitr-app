@@ -2,7 +2,8 @@ import {
     UPDATE_MEME_ITEMS,
     ADD_NEW_MEME_ITEM,
     LOAD_CANVAS,
-    RESET_CANVAS
+    RESET_CANVAS,
+    UPDATE_METADATA
 } from './memeEditorActions';
 
 const initialState = {
@@ -71,6 +72,14 @@ export default (state = initialState, action) => {
         case RESET_CANVAS:
             return {
                 ...initialState
+            }
+        case UPDATE_METADATA:
+            return {
+                ...state,
+                metadata: {
+                    ...state.metadata,
+                    ...action.payload
+                }
             }
         default:
             return state;

@@ -1,4 +1,5 @@
 export const UPDATE_MEME_ITEMS = 'UPDATE_MEME_ITEMS';
+export const UPDATE_METADATA = 'UPDATE_METADATA';
 export const ADD_NEW_MEME_ITEM = 'ADD_NEW_MEME_ITEM';
 export const LOAD_CANVAS = 'LOAD_CANVAS';
 export const RESET_CANVAS = 'RESET_CANVAS';
@@ -20,4 +21,9 @@ export const loadCanvas = meme => ({
 
 export const resetCanvas = () => ({
     type: RESET_CANVAS
+});
+
+export const updateMetadata = metadata => ({
+    type: UPDATE_METADATA,
+    payload: metadata
 });
