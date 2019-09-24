@@ -6,9 +6,13 @@ import { saveMeme } from '../redux/library/libraryActions';
 
 const mapStateToProps = ({
     memeEditor: {
+        id,
+        metadata,
         memeItems
     }
 }) => ({
+    id,
+    metadata,
     memeItems
 });
 

@@ -9,14 +9,15 @@ const RangeSlider = ({
     config: {
         heading,
         min,
-        max
+        max,
+        step
     }
 }) => (
     <Slider
         value={value}
         minimumValue={min}
         maximumValue={max}
-        step={1}
+        step={step}
         onValueChange={onChange}
         style={{ width: '100%' }}
         minimumTrackTintColor="#65318f"

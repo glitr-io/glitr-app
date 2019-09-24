@@ -7,22 +7,24 @@ import Selectable from '../../selectable/Selectable';
 class Canvas extends Component {
 
     render () {
-        const { value, style, onChange, children } = this.props;
+        const { value, style, onChange, children, onSelect } = this.props;
 
         return (
-            <View style={{ height: style.height, width: '100%', position: 'relative', alignItems: 'center' }}>
-                <View
-                    style={{
-                        position: 'absolute',
-                        width: '100%',
-                        backgroundColor: 'white',
-                        overflow: 'hidden',
-                        ...style
-                    }}
-                >
-                    {children}
+            <Selectable onPress={onSelect}>
+                <View style={{ height: style.height, width: '100%', position: 'relative', alignItems: 'center' }}>
+                    <View
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            backgroundColor: 'white',
+                            overflow: 'hidden',
+                            ...style
+                        }}
+                    >
+                        {children}
+                    </View>
                 </View>
-            </View>
+            </Selectable>
         );
     }
 }

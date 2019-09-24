@@ -31,7 +31,6 @@ class BackgroundImage extends Component {
                 width,
                 height: (width / targetW) * targetH
             };
-            console.log('size>>>>>>>>>>>>>', size)
             // this.setState(size, () => setCanvasSize(size));
             this.setState(size);
         });

@@ -15,16 +15,18 @@ import {
 } from 'native-base';
 import PalletItem from './pallet-items/PalletItem';
 
-const EditPanel = ({
+const MemePallet = ({
     memeItems = [],
     onUpdate
 }) => {
-    const selectedEditorIndex = memeItems
+    const selectedIndex = memeItems
         .findIndex(memeItem => !!memeItem.isFocused);
+    const selectedEditorIndex = selectedIndex > -1 ? selectedIndex : 0;
+    // return (<Text>hello world</Text>);
     return (
         <PalletItem
             {...memeItems[selectedEditorIndex]}
-            template={memeItems[selectedEditorIndex].template}
+            template={memeItems[selectedEditorIndex].type}
             onUpdate={update => onUpdate(
                 memeItems
                     .map((memeItem, index) => index === selectedEditorIndex
@@ -32,12 +34,16 @@ const EditPanel = ({
                         : memeItem
                     )
             )}
+            onRemove={() => onUpdate(
+                memeItems
+                    .filter((_, index) => index !== selectedEditorIndex)
+            )}
          />
     );
 }
 
-EditPanel.propTypes = {
+MemePallet.propTypes = {
     memeItems: PropTypes.array.isRequired
 };
 
-export default EditPanel;
+export default MemePallet;

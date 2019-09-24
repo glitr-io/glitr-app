@@ -178,7 +178,6 @@ export default class Draggable extends Component {
 		const touchableContent = this._getTextOrImage();
 		const { pressDrag, longPressDrag, pressInDrag, pressOutDrag, style } = this.props;
 
-		console.log('style:', style);
 		return (
             <Animated.View 
                 {...this.panResponder.panHandlers}

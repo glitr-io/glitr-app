@@ -50,6 +50,7 @@ class TextItem extends Component {
     }
 
     handleFocus () {
+        this.props.onSelect();
         this.input.focus();
         this.webview.injectJavaScript(`
             (function() {
@@ -87,9 +88,11 @@ class TextItem extends Component {
         const { isEditing = false } = this.state;
 
         const webView = true;
+        console.log('style', style.transform || [{ scale: 0 }]);
 
         return (
             <Draggable
+                // key={(style.transform || [{ scale: 0 }]).find(trans => !!trans.scale).scale}
                 style={{
                     ...style,
                     position: 'absolute'

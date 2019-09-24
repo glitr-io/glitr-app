@@ -15,9 +15,10 @@ import InputControl from '../../../input-controls/InputControl';
 
 const BottomText = ({
     value,
-    scale,
+    style,
     color,
-    onUpdate
+    onUpdate,
+    onRemove
 }) => (
     <View style={{ flex: 1 }}>
         <Tabs locked tabBarPosition="bottom">
@@ -32,20 +33,43 @@ const BottomText = ({
             <Tab heading="size" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: '#eee' }}>
                 <InputControl
                     type="slider"
-                    value={scale}
+                    value={(style.transform || [{ scale: 1 }])
+                        .find(trans => (typeof trans.scale !== 'undefined'))
+                    }
                     config={{
-                        min: 20,
-                        max: 70
+                        min: 1,
+                        max: 4,
+                        step: 0.000001
                     }}
-                    onChange={newVal => onUpdate({ scale: newVal })}
+                    onChange={newVal => onUpdate({
+                        style: {
+                            ...style,
+                            transform: (style.transform || [])
+                                .map(trans => (!!trans.scale
+                                    ? {
+                                        scale: newVal
+                                    }
+                                    : trans
+                                ))
+                        }
+                    })}
                 />
             </Tab>
             <Tab heading="color" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingVertical: 10, backgroundColor: '#eee' }}>
-            <InputControl
+                <InputControl
                     type="colorPicker"
                     config={{ size: 70 }}
                     value={color}
                     onChange={newVal => onUpdate({ color: newVal })}
+                />
+            </Tab>
+            <Tab heading="config" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingVertical: 10, backgroundColor: '#eee' }}>
+                <InputControl
+                    type="configPicker"
+                    config={{ size: 70 }}
+                    value={color}
+                    onChange={newVal => onUpdate({ color: newVal })}
+                    onRemove={onRemove}
                 />
             </Tab>
         </Tabs>
@@ -54,7 +78,7 @@ const BottomText = ({
 
 BottomText.propTypes = {
     value: PropTypes.string.isRequired,
-    scale: PropTypes.number.isRequired,
+    style: PropTypes.number.isRequired,
     isFocused: PropTypes.bool
 };
 

@@ -20,13 +20,14 @@ class Selectable extends Component {
                 borderWidth: (!!isSelected ? 1 : 0),
                 margin: (!!isSelected ? -1 : 0),
                 borderStyle: 'dashed',
+                flex: 1
             }}>
                 <TouchableWithoutFeedback
                     onPress={() => this.setState({ isSelected: !isSelected}, () => !!onPress && onPress())}
                     onLongPress={() => !!onLongPress && onLongPress()}
                     style={{ flex: 1 }}
                 >
-                    <View>
+                    <View style={{ flex: 1 }}>
                         {children}
                     </View>
                 </TouchableWithoutFeedback>

@@ -20,7 +20,8 @@ class BackgroundImage extends Component {
         const {
             value,
             index,
-            onUpdate
+            onUpdate,
+            onRemove
         } = this.props;
 
         const SIZE = 60;
@@ -34,6 +35,14 @@ class BackgroundImage extends Component {
                             defaultValue={value}
                             config={{ size: 70 }}
                             onChange={newVal => onUpdate({ value: newVal })}
+                        />
+                    </Tab>
+                    <Tab heading="config" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingVertical: 10, backgroundColor: '#eee' }}>
+                        <InputControl
+                            type="configPicker"
+                            config={{ size: 70 }}
+                            onChange={newVal => console.log({ newVal })}
+                            onRemove={onRemove}
                         />
                     </Tab>
                 </Tabs>

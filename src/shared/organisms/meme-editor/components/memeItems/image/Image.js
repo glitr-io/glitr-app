@@ -73,11 +73,12 @@ class ImageItem extends Component {
     }
 
     render () {
-        const { value, style, onChange } = this.props;
+        const { value, style, onChange, onSelect } = this.props;
 
         return (
             <Draggable
                 style={{
+                    flex: 1,
                     ...style,
                     position: 'absolute'
                 }}
@@ -86,16 +87,15 @@ class ImageItem extends Component {
                 }}
             >
                 <Selectable
-                    onPress={() => console.log('onPressed called')}
+                    onPress={() => onSelect()}
                     onLongPress={() => this.getImageFromDevice('library')}
                 >
                     <Image
                         source={{ uri: value }}
                         style={{
-                            width: 200,
-                            height: 200
+                            flex: 1
                         }}
-                        resizeMode="contain"
+                        resizeMode="cover"
                     />
                 </Selectable>
             </Draggable>

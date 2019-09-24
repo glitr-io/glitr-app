@@ -18,7 +18,7 @@ const initialState = {
             type: 'CANVAS',
             value: 'hello world',
             style: {
-                height: 200
+                height: 300
             },
             isFocused: false
         },

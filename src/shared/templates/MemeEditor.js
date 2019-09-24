@@ -11,6 +11,8 @@ import MemeEditorComponent from  '../organisms/meme-editor';
 import KeyboardGrid from '../atoms/KeyboardGrid';
 import TickButton from '../atoms/TickButton';
 import DownloadButton from '../atoms/DownloadButton';
+import Chance from 'chance';
+const chance = new Chance();
 
 class MemeEditor extends PureComponent {
     getMeme() {
@@ -32,7 +34,10 @@ class MemeEditor extends PureComponent {
     render() {
         const {
             navigation,
-            saveMeme
+            saveMeme,
+            metadata,
+            memeItems,
+            updateMemeItems
         } = this.props;
         const isSending = !!navigation.getParam('onMemeSelect');
 
@@ -40,21 +45,28 @@ class MemeEditor extends PureComponent {
             <Container>
                 <Header style={{ marginTop: StatusBar.currentHeight, backgroundColor: '#65318f' }}>
                     <Left>
-                        <Button transparent onPress={() => navigation.goBack()}>
+                        {/* <Button transparent onPress={() => navigation.goBack()}>
                             <Icon name='md-arrow-round-back' style={{ color: 'white' }} />
-                        </Button>
+                        </Button> */}
                     </Left>
                     <Body>
                         <Title>meme editor</Title>
                     </Body>
                     <Right>
-                        <Button transparent onPress={() => this.getMeme()}>
-                            <Icon name={`md-${isSending ? 'send' : 'download'}`} style={{ color: 'white' }} />
+                        <Button
+                            transparent
+                            onPress={() => saveMeme({
+                                id: chance.hash(),
+                                metadata,
+                                memeItems
+                            })}
+                        >
+                            <Icon name={`md-${isSending ? 'send' : 'add'}`} style={{ color: 'white' }} />
                         </Button>
                     </Right>
                 </Header>
                 {/* <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => updateMemeItems(memeItems.map(item => ({ ...item, isFocused: false })))}> */}
-                    {/* <KeyboardGrid style={{ backgroundColor: '#eee' }}> */}
+                    <KeyboardGrid style={{ backgroundColor: '#eee' }}>
                         <Row style={{ flex: 1 }}>
                             <Content contentContainerStyle={{}}>
                                     <MemeEditorComponent
@@ -67,7 +79,7 @@ class MemeEditor extends PureComponent {
                                     {/* <DownloadButton onPress={() => this.openDrawer()} /> */}
                             </Content>
                         </Row>
-                    {/* </KeyboardGrid> */}
+                    </KeyboardGrid>
                 {/* </TouchableWithoutFeedback> */}
             </Container>
         );

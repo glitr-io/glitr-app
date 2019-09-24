@@ -4,12 +4,14 @@ import slider from './slider/Slider';
 import text from './text/Text';
 import imagePicker from './image-picker/ImagePicker';
 import colorPicker from './color-picker/ColorPicker';
+import configPicker from './config/Config';
 
 const templateMapping = {
     slider,
     text,
     imagePicker,
-    colorPicker
+    colorPicker,
+    configPicker
 };
 
 const InputControl = (props) => {
