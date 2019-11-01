@@ -26,8 +26,9 @@ const Library = ({
             </Header>
             <Content style={{ backgroundColor: '#eee', paddingTop: 10 }}>
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', overflow: 'scroll' }}>
-                    {currentMemes.map(meme => (
+                    {currentMemes.map((meme, index) => (
                         <MemePreview
+                            key={index}
                             base64={meme.metadata.thumbnail}
                             selected={isEditing}
                             onEditMode={() => setIsEditing(true)}

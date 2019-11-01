@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
@@ -20,7 +20,7 @@ const persistConfig = {
     transforms: [encryptor]
 };
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, reducer(combineReducers));
 
 export const store = createStore(
     persistedReducer,

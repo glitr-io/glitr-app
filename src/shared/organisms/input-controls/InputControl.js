@@ -5,13 +5,15 @@ import text from './text/Text';
 import imagePicker from './image-picker/ImagePicker';
 import colorPicker from './color-picker/ColorPicker';
 import configPicker from './config/Config';
+import dimentionPicker from './dimention/DimentionPicker';
 
 const templateMapping = {
     slider,
     text,
     imagePicker,
     colorPicker,
-    configPicker
+    configPicker,
+    dimentionPicker
 };
 
 const InputControl = (props) => {

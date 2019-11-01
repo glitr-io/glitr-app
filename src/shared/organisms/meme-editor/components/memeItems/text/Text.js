@@ -88,11 +88,10 @@ class TextItem extends Component {
         const { isEditing = false } = this.state;
 
         const webView = true;
-        console.log('style', style.transform || [{ scale: 0 }]);
 
         return (
             <Draggable
-                // key={(style.transform || [{ scale: 0 }]).find(trans => !!trans.scale).scale}
+                key={JSON.stringify((style.transform || [{ scale: 0 }, { rotate: '0deg' }]))}
                 style={{
                     ...style,
                     position: 'absolute'
@@ -165,7 +164,7 @@ class TextItem extends Component {
                         <View style={{ height: style.webviewHeight, width: 200, position: 'absolute' }} />
                         <TextInput
                             ref={c => this.input = c}
-                            style={{height: 40, borderColor: 'gray', borderWidth: 0, display: 'none', visibility: 'hidden'}}
+                            style={{height: 40, borderColor: 'gray', borderWidth: 0, display: 'none', opacity: 0}}
                             onChangeText={(value) => {
                                 onChange({ value });
                                 this.requestHeight();

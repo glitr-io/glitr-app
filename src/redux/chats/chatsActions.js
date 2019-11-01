@@ -1,4 +1,4 @@
-import { store } from '../store';
+// import { store } from '../store';
 import Chance from 'chance';
 const chance = new Chance();
 
@@ -16,7 +16,7 @@ export const CHATS_DELETE_CHAT = 'CHATS_DELETE_CHAT';
 export const CHATS_REPORT_CHAT = 'CHATS_REPORT_CHAT';
 
 export const createChat = (users) => {
-    const { account: { accountId }, contacts: { contacts } } = store.getState();
+    // const { account: { accountId }, contacts: { contacts } } = store.getState();
 
     const groupMembers = users.map(userId => contacts.find(contact => contact.id === userId));
 

@@ -82,7 +82,7 @@ class ColorPicker extends Component {
 }
 
 ColorPicker.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.object,
     defaultValue: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     config: PropTypes.shape({

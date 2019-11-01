@@ -57,7 +57,7 @@ const Canvas = ({
 
 Canvas.propTypes = {
     value: PropTypes.string.isRequired,
-    style: PropTypes.number.isRequired,
+    style: PropTypes.object.isRequired,
     isFocused: PropTypes.bool
 };
 

@@ -35,6 +35,7 @@ const BottomText = ({
                     type="slider"
                     value={(style.transform || [{ scale: 1 }])
                         .find(trans => (typeof trans.scale !== 'undefined'))
+                        .scale
                     }
                     config={{
                         min: 1,
@@ -48,6 +49,84 @@ const BottomText = ({
                                 .map(trans => (!!trans.scale
                                     ? {
                                         scale: newVal
+                                    }
+                                    : trans
+                                ))
+                        }
+                    })}
+                />
+            </Tab>
+            <Tab heading="rotation" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: '#eee' }}>
+                <InputControl
+                    type="slider"
+                    value={(style.transform || [{ scale: 1 }])
+                        .find(trans => (typeof trans.scale !== 'undefined'))
+                        .scale
+                    }
+                    config={{
+                        min: 1,
+                        max: 1000,
+                        step: 1
+                    }}
+                    onChange={newVal => onUpdate({
+                        style: {
+                            ...style,
+                            transform: (style.transform || [])
+                                .map(trans => (!!trans.rotate
+                                    ? {
+                                        rotate: `${(360/1000)*newVal}deg`
+                                    }
+                                    : trans
+                                ))
+                        }
+                    })}
+                />
+            </Tab>
+            <Tab heading="top" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: '#eee' }}>
+                <InputControl
+                    type="slider"
+                    value={(style.transform || [{ scale: 1 }])
+                        .find(trans => (typeof trans.scale !== 'undefined'))
+                        .scale
+                    }
+                    config={{
+                        min: 1,
+                        max: 1000,
+                        step: 1
+                    }}
+                    onChange={newVal => onUpdate({
+                        style: {
+                            ...style,
+                            transform: (style.transform || [])
+                                .map(trans => (!!trans.rotate
+                                    ? {
+                                        rotate: `${newVal}deg`
+                                    }
+                                    : trans
+                                ))
+                        }
+                    })}
+                />
+            </Tab>
+            <Tab heading="left" tabStyle={{ backgroundColor: '#65318f' }} activeTabStyle={{ backgroundColor: '#65318f' }} style={{ alignItems: 'center', alignContent: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: '#eee' }}>
+                <InputControl
+                    type="slider"
+                    value={(style.transform || [{ scale: 1 }])
+                        .find(trans => (typeof trans.scale !== 'undefined'))
+                        .scale
+                    }
+                    config={{
+                        min: 1,
+                        max: 1000,
+                        step: 1
+                    }}
+                    onChange={newVal => onUpdate({
+                        style: {
+                            ...style,
+                            transform: (style.transform || [])
+                                .map(trans => (!!trans.rotate
+                                    ? {
+                                        rotate: `${newVal}deg`
                                     }
                                     : trans
                                 ))
@@ -78,7 +157,7 @@ const BottomText = ({
 
 BottomText.propTypes = {
     value: PropTypes.string.isRequired,
-    style: PropTypes.number.isRequired,
+    style: PropTypes.object.isRequired,
     isFocused: PropTypes.bool
 };
 

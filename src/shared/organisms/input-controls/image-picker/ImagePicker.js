@@ -90,7 +90,8 @@ class ImagePicker extends Component {
                         this.setState({ currentValue: `data:image/jpeg;base64,${result.base64}` });
                     }
                     if (!advanced) onChange(`data:image/jpeg;base64,${result.base64}`);
-                });
+                })
+                .catch(console.log);
         } else if (type === 'library') {
             ImgPicker.launchImageLibraryAsync({ allowsEditing: true, base64: true })
                 .then(result => {
@@ -98,7 +99,8 @@ class ImagePicker extends Component {
                         this.setState({ currentValue: `data:image/jpeg;base64,${result.base64}` });
                     }
                     if (!advanced) onChange(`data:image/jpeg;base64,${result.base64}`);
-                });
+                })
+                .catch(console.log);;
         } else if (type === 'memeTypes') {
             navigation.navigate('MemeTypesFullScreen', {
                 onMemeSelect: (meme) => this.setState({ currentValue: meme })
