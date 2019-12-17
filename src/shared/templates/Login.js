@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
@@ -8,6 +8,7 @@ import GoogleButton from '../atoms/GoogleButton';
 import Input from '../organisms/input-controls/InputControl';
 
 const Login = ({
+	navigation,
 	loginForm,
 	register,
 	loginWithPassword,
@@ -25,6 +26,27 @@ const Login = ({
 		<Row style={{ height: 350 }}>
 			<Col>
 				<Grid style={{ height: 350 }}>
+					<Row style={{ marginTop: 20 }}>
+						<Col>
+							<Button
+								full
+								style={{ marginLeft: 5, backgroundColor: '#65318f' }}
+								onPress={() => loginWithPassword(loginForm.email, loginForm.password)}
+							>
+								<Text style={[styles.text, { color: 'white', marginHorizontal: 10 }]}>login</Text>
+							</Button>
+						</Col>
+						<Col>
+							<Button
+								full
+								style={{ marginLeft: 5, backgroundColor: '#65318f' }}
+								onPress={() => navigation.navigate('Register')}
+							>
+								<Text style={[styles.text, { color: 'white' }]}>register</Text>
+							</Button>
+						</Col>
+					</Row>
+
 					<Row>
 						<Col style={styles.centered}>
 							<Text style={styles.text}>email</Text>
@@ -54,7 +76,7 @@ const Login = ({
 							/>
 						</Col>
 					</Row>
-					<Row>
+					{/* <Row>
 						<Col style={styles.centered}>
 							<Text style={styles.text}>confirm password</Text>
 						</Col>
@@ -68,28 +90,8 @@ const Login = ({
 								onChange={confirmPassword => updateLoginForm({ confirmPassword })}
 							/>
 						</Col>
-					</Row>
+					</Row> */}
 							
-					<Row style={{ marginTop: 20 }}>
-						<Col>
-							<Button
-								full
-								style={{ marginLeft: 5, backgroundColor: '#65318f' }}
-								onPress={() => loginWithPassword(loginForm.email, loginForm.password)}
-							>
-								<Text style={[styles.text, { color: 'white', marginHorizontal: 10 }]}>login</Text>
-							</Button>
-						</Col>
-						<Col>
-							<Button
-								full
-								style={{ marginLeft: 5, backgroundColor: '#65318f' }}
-								onPress={() => register(loginForm.email, loginForm.password)}
-							>
-								<Text style={[styles.text, { color: 'white' }]}>register</Text>
-							</Button>
-						</Col>
-					</Row>
 				</Grid>
 			</Col>
 		</Row>

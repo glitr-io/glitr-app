@@ -54,7 +54,7 @@ export const loginWithPassword = (email, password) => ({
     }) => fetch.post('http://192.168.1.53:4000', {
         query: `mutation {
             login (
-                email: "${email}",
+                email: "${email}"
                 password: "${password}"
             ) {
                 token

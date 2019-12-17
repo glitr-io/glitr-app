@@ -32,6 +32,18 @@ const MemeEditor = createStackNavigator({
   headerMode: 'none'
 });
 
+const Library = createStackNavigator({
+  Library: LibraryScreen,
+}, {
+  headerMode: 'none'
+});
+
+const Memes = createStackNavigator({
+  Memes: MemesScreen,
+}, {
+  headerMode: 'none'
+});
+
 MemeEditor.navigationOptions = {
   tabBarLabel: 'editor',
   tabBarIcon: ({ focused }) => <Image
@@ -39,12 +51,6 @@ MemeEditor.navigationOptions = {
     style={{width: 26, height: 26}}
   />
 };
-
-const Library = createStackNavigator({
-  Library: LibraryScreen,
-}, {
-  headerMode: 'none'
-});
 
 Library.navigationOptions = {
   tabBarLabel: 'library',
@@ -54,9 +60,18 @@ Library.navigationOptions = {
   />
 };
 
+Memes.navigationOptions = {
+  tabBarLabel: 'Memes',
+  tabBarIcon: ({ focused }) => <Image
+    source={(focused ? GlitrIconSelected : GlitrIcon)}
+    style={{width: 26, height: 26}}
+  />
+};
+
 export default createBottomTabNavigator({
   MemeEditor,
-  Library
+  Library,
+  Memes
 }, {
   initialRouteName: 'MemeEditor',
   tabBarOptions: {
