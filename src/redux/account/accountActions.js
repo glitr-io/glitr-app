@@ -25,6 +25,11 @@ export const ACCOUNT_CHANGE_DISPLAY_ICON_REQUEST = 'ACCOUNT_CHANGE_DISPLAY_ICON_
 export const ACCOUNT_CHANGE_DISPLAY_ICON_SUCCESS = 'ACCOUNT_CHANGE_DISPLAY_ICON_SUCCESS';
 export const ACCOUNT_CHANGE_DISPLAY_ICON_FAILURE = 'ACCOUNT_CHANGE_DISPLAY_ICON_FAILURE';
 
+export const ACCOUNT_FORGOT_PASSWORD = 'ACCOUNT_FORGOT_PASSWORD';
+export const ACCOUNT_FORGOT_PASSWORD_REQUEST = 'ACCOUNT_FORGOT_PASSWORD_REQUEST';
+export const ACCOUNT_FORGOT_PASSWORD_SUCCESS = 'ACCOUNT_FORGOT_PASSWORD_SUCCESS';
+export const ACCOUNT_FORGOT_PASSWORD_FAILURE = 'ACCOUNT_FORGOT_PASSWORD_FAILURE';
+
 export const ACCOUNT_UPDATE_LOGIN_FORM = 'ACCOUNT_UPDATE_LOGIN_FORM';
 
 export const register = (email, password) => ({
@@ -85,4 +90,9 @@ export const changeDisplayIcon = (newDisplayIcon) => ({
 export const updateLoginForm = (update) => ({
     type: ACCOUNT_UPDATE_LOGIN_FORM,
     payload: update
+});
+
+export const forgotPassword = (email) => ({
+    type: ACCOUNT_FORGOT_PASSWORD,
+    promise: () => new Promise((resolve) => resolve(email))
 });

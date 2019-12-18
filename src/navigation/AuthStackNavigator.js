@@ -3,13 +3,13 @@ import {
 } from 'react-navigation';
 
 import Login from '../screens/Login';
-// import Register from '../screens/Register';
-// import ForgotPassword from '../screens/ForgotPassword';
+import Register from '../screens/Register';
+import ForgotPassword from '../screens/ForgotPassword';
 
 const AuthStack = createStackNavigator({
     Login,
-    // Register,
-    // ForgotPassword
+    Register,
+    ForgotPassword
 }, {
     headerMode: 'none',
     initialRouteName: 'Login',

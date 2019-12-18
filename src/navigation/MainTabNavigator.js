@@ -13,6 +13,7 @@ import {
 import MemeEditorScreen from '../screens/MemeEditor';
 import MemesScreen from '../screens/Memes';
 import LibraryScreen from '../screens/Library';
+import ThreadsScreen from '../screens/Threads';
 
 import GlitrIconSelected from '../shared/images/meme_icon_Selected.png';
 import MessageIconSelected from '../shared/images/message_Selected.png';
@@ -38,10 +39,18 @@ const Library = createStackNavigator({
   headerMode: 'none'
 });
 
-const Memes = createStackNavigator({
+// const Memes = createStackNavigator({
+//   Memes: MemesScreen,
+// }, {
+//   headerMode: 'none'
+// });
+
+const Threads = createStackNavigator({
+  Threads: ThreadsScreen,
   Memes: MemesScreen,
 }, {
-  headerMode: 'none'
+  headerMode: 'none',
+  initialRouteName: 'Threads',
 });
 
 MemeEditor.navigationOptions = {
@@ -60,8 +69,16 @@ Library.navigationOptions = {
   />
 };
 
-Memes.navigationOptions = {
-  tabBarLabel: 'Memes',
+// Memes.navigationOptions = {
+//   tabBarLabel: 'Memes',
+//   tabBarIcon: ({ focused }) => <Image
+//     source={(focused ? GlitrIconSelected : GlitrIcon)}
+//     style={{width: 26, height: 26}}
+//   />
+// };
+
+Threads.navigationOptions = {
+  tabBarLabel: 'Threads',
   tabBarIcon: ({ focused }) => <Image
     source={(focused ? GlitrIconSelected : GlitrIcon)}
     style={{width: 26, height: 26}}
@@ -69,9 +86,10 @@ Memes.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
+  Threads,
+  // Memes,
   MemeEditor,
   Library,
-  Memes
 }, {
   initialRouteName: 'MemeEditor',
   tabBarOptions: {

@@ -7,7 +7,7 @@ import FacebookButton from '../atoms/FacebookButton';
 import GoogleButton from '../atoms/GoogleButton';
 import Input from '../organisms/input-controls/InputControl';
 
-const Login = ({
+const Register = ({
 	navigation,
 	loginForm,
 	register,
@@ -76,40 +76,24 @@ const Login = ({
 							/>
 						</Col>
 					</Row>
-					
-					<Row style={{ marginTop: 20 }}>
+					<Row>
+						<Col style={styles.centered}>
+							<Text style={styles.text}>confirm password</Text>
+						</Col>
+					</Row>
+					<Row>
 						<Col>
-							<Button
-								full
-								style={{ marginLeft: 5, backgroundColor: '#65318f' }}
-								onPress={() => navigation.navigate('Main')}
-							>
-								<Text style={[styles.text, { color: 'white', marginHorizontal: 10 }]}>login</Text>
-							</Button>
+							<Input
+								type="text"
+								secureTextEntry
+								value={loginForm.confirmPassword}
+								onChange={confirmPassword => updateLoginForm({ confirmPassword })}
+							/>
 						</Col>
 					</Row>
 							
 				</Grid>
 			</Col>
-		</Row>
-		<Row>
-			<Grid>
-				<Row style={styles.centered}>
-					<Col>
-						<Text style={styles.text}>...or login with social media.</Text>
-					</Col>
-				</Row>
-				<Row style={styles.centered}>
-					<Col>
-						<FacebookButton onPress={loginWithPassword} />
-					</Col>
-				</Row>
-				<Row style={styles.centered}>
-					<Col>
-						<GoogleButton onPress={() => register('user1@test.com', 'test')} />
-					</Col>
-				</Row>
-			</Grid>
 		</Row>
 
     </Grid>
@@ -127,4 +111,4 @@ const styles = StyleSheet.create({
   	}
 });
 
-export default Login;
+export default Register;
